@@ -78,7 +78,8 @@ def split_extension(file_name: str):
 
 
 
-path = 'D:\\Home_work_1\\motloh'    
+
+
 def new_scan(path):
    
     for i in os.listdir(path):
@@ -119,9 +120,11 @@ def new_scan(path):
 
 
             
+path_input = input('Ведіть шлях до папки. ')
 
 
-new_scan(path)
+
+new_scan(path_input)
 print('Фото:', IMAGES)
 print('Документи:', DOCUMENTS) 
 print('Відео:' , VIDEO)
@@ -131,6 +134,12 @@ print('Папки:', FOLDERS)
 print('Невідомі файли:' , UNKNOWN)
 
 
+def create_folders(folder, folders_name:list):
+    for name in folders_name:
+        if not os.path.exists(f'{folder}\\{name}'):
+            os.mkdir(f'{folder}\\{name}')
+    
+create_folders(path_input, ['Images','Document','Video','Audio','Archives','Folders','Unknown'])
 
 
 def move_files(file_list, destination_folder):
@@ -167,20 +176,21 @@ def move_folders(folder_list, destination_folder):
 
 
 
-move_files(IMAGES, r'D:\Home_work_1\images')
+move_files(IMAGES, f'{path_input}\\Images')
 
 
-move_files(AUDIO, r'D:\Home_work_1\audios')
+move_files(AUDIO, f'{path_input}\\Audio')
 
 
-move_files(VIDEO, r'D:\Home_work_1\video')
+move_files(VIDEO, f'{path_input}\\Video')
 
+move_files(ARCHIVES, f'{path_input}\\Archives')
 
-move_files(DOCUMENTS, r'D:\Home_work_1\documents')
+move_files(DOCUMENTS, f'{path_input}\\Documet')
 
-move_files(UNKNOWN, r'D:\Home_work_1\UNKNOWN')
+move_files(UNKNOWN, f'{path_input}\\Unknown')
 
-move_folders(FOLDERS, r'D:\Home_work_1\Folders')
+move_folders(FOLDERS, f'{path_input}\\Folders')
 
 # if __name__ == "__main__":
 #     path = sys.argv[1]
